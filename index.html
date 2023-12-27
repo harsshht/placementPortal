@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body style="background: linear-gradient(to right, #0c1013, #000000);">
+<!-- Header -->
+<header style="background: linear-gradient(to right, #000, #1a1717); color: #fff; text-align: center; padding: 10px; position: relative; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;">
+        <nav style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%);">
+            <ul class="navbar" style="list-style: none; padding: 0; margin: 0;">
+                <li style="display: inline-block; margin-right: 10px;"><a href="#" onclick="openLoginModal()" style="text-decoration: none; color: #fff; padding: 10px 15px; background: #333; border-radius: 5px; transition: background 0.3s ease;">Login</a></li>
+                <li style="display: inline-block;"><a href="#" onclick="openRegistrationModal()" style="text-decoration: none; color: #fff; padding: 10px 15px; background: #222; border-radius: 5px; transition: background 0.3s ease;">Register</a></li>
+            </ul>
+        </nav>
+        <h1 style="margin: 0;">Placement Portal</h1>
+</header>
+<!-- Login Modal -->
+<div id="login-modal" class="modal" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.4);">
+    <div class="modal-content" style="background: linear-gradient(to right, #0a151d, #0c3b5a); margin: 10% auto; padding: 20px; border: 1px solid #3498db; border-radius: 10px; max-width: 400px; width: 80%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); display: flex; flex-direction: column; align-items: center;">
+        <span class="close" onclick="closeLoginModal()" style="color: #fff; font-size: 28px; font-weight: bold; cursor: pointer; align-self: flex-end;">&times;</span>
+        <h2 style="color: #fff; margin-bottom: 20px;">Login</h2>
+        <form id="login-form" style="width: 100%;">
+            <!-- Login form content -->
+            <label for="login-email" style="display: block; margin-bottom: 8px; color: #fff; width: 100%;">Email:</label>
+            <input type="email" id="login-email" name="login-email" style="width: 100%; padding: 8px; border: 1px solid #fff; border-radius: 5px; background-color: rgba(255, 255, 255, 0.1); color: #fff; margin-bottom: 10px;" required>
+
+            <label for="login-password" style="display: block; margin-top: 8px; margin-bottom: 8px; color: #fff; width: 100%;">Password:</label>
+            <input type="password" id="login-password" name="login-password" style="width: 100%; padding: 8px; border: 1px solid #fff; border-radius: 5px; background-color: rgba(255, 255, 255, 0.1); color: #fff; margin-bottom: 20px;" required>
+
+            <button type="button" onclick="login()" style="background: #fff; color: #3498db; padding: 10px; border: none; cursor: pointer; border-radius: 5px; width: 100%;">Login</button>
+        </form>
+    </div>
+</div>
+<!-- Registration Modal -->
+<div id="registration-modal" class="modal" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.4);">
+    <div class="modal-content" style="background: linear-gradient(to right, #0a151d, #0c3b5a); margin: 10% auto; padding: 20px; border: 1px solid #3498db; border-radius: 10px; max-width: 400px; width: 80%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); display: flex; flex-direction: column; align-items: center;">
+        <span class="close" onclick="closeRegistrationModal()" style="color: #fff; font-size: 28px; font-weight: bold; cursor: pointer; align-self: flex-end;">&times;</span>
+        <h2 style="color: #fff; margin-bottom: 20px;">Student Registration</h2>
+        <form id="registration-form" style="width: 100%;">
+            <!-- Registration form content -->
+            <label for="name" style="display: block; margin-bottom: 8px; color: #fff; width: 100%;">Name:</label>
+            <input type="text" id="name" name="name" style="width: 100%; padding: 8px; border: 1px solid #fff; border-radius: 5px; background-color: rgba(255, 255, 255, 0.1); color: #fff; margin-bottom: 10px;" required>
+
+            <label for="email" style="display: block; margin-bottom: 8px; color: #fff; width: 100%;">Email:</label>
+            <input type="email" id="email" name="email" style="width: 100%; padding: 8px; border: 1px solid #fff; border-radius: 5px; background-color: rgba(255, 255, 255, 0.1); color: #fff; margin-bottom: 10px;" required>
+
+            <label for="college" style="display: block; margin-bottom: 8px; color: #fff; width: 100%;">College:</label>
+            <input type="text" id="college" name="college" style="width: 100%; padding: 8px; border: 1px solid #fff; border-radius: 5px; background-color: rgba(255, 255, 255, 0.1); color: #fff; margin-bottom: 20px;" required>
+
+            <button type="button" onclick="registerStudent()" style="background: #fff; color: #3498db; padding: 10px; border: none; cursor: pointer; border-radius: 5px; width: 100%;">Register</button>
+        </form>
+    </div>
+</div>
+<!-- JOb listing -->
+<div style="width: 95%;  margin: 10px auto; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); background-color: #333; color: #fff;">
+
+    <h1 style="font-size: 24px; margin-bottom: 20px; color: #3498db; text-align: center;">Job Listings</h1>
+
+ <!-- Filters -->
+<div style="margin-bottom: 20px;">
+    <label for="job-type" style="display: block; margin-bottom: 10px; color: #fff; font-size: 16px;">Job Type:</label>
+    <select id="job-type" style="width: 15%; padding: 12px; border: 1px solid #555; border-radius: 8px; background-color: #444; color: #fff; font-size: 14px;">
+        <option value="">All</option>
+        <option value="full-time">Full Time</option>
+        <option value="part-time">Part Time</option>
+        <option value="internship">Internship</option>
+    </select>
+</div>
+
+<div style="margin-bottom: 20px;">
+    <label for="company" style="display: block; margin-bottom: 10px; color: #fff; font-size: 16px;">Company:</label>
+    <select id="company" style="width: 15%; padding: 12px; border: 1px solid #555; border-radius: 8px; background-color: #444; color: #fff; font-size: 14px;">
+        <option value="">All</option>
+        <option value="Google">Google</option>
+        <option value="Microsoft">Microsoft</option>
+        <option value="Apple">Apple</option>
+        <option value="Amazon">Amazon</option>
+        <option value="Facebook">Facebook</option>
+    </select>
+</div>
+
+<div style="margin-bottom: 20px;">
+    <label for="location" style="display: block; margin-bottom: 10px; color: #fff; font-size: 16px;">Location:</label>
+    <select id="location" style="width: 15%; padding: 12px; border: 1px solid #555; border-radius: 8px; background-color: #444; color: #fff; font-size: 14px;">
+        <option value="">All</option>
+        <option value="city1">Hyderabad</option>
+        <option value="city2">Bangalore</option>
+        <option value="city3">Noida</option>
+    </select>
+</div>
+
+
+    <!-- Job Listings -->
+<ul id="job-listings" style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: space-between; ">
+
+    <!-- Job Listing 1 -->
+    <li data-job-type="full-time" data-company="Google" data-location="Hyderabad" style="border: 1px solid #555; width: 25%; border-radius: 10px; padding: 20px; margin-bottom: 20px; background-color: #444;">
+        <h3 style="margin-bottom: 10px; color: #3498db; text-align: center;">Software Engineer</h3>
+        <p style="margin-bottom: 10px;"><strong>Company:</strong> Google</p>
+        <p style="margin-bottom: 10px;"><strong>Location:</strong> Hyderabad</p>
+        <p style="margin-bottom: 10px;"><strong>Job Type:</strong> Full Time</p>
+        <p style="margin-bottom: 10px;"><strong>Description:</strong> We are looking for a skilled Software Engineer to join our team...</p>
+        <a href="link_to_apply" style="display: inline-block; background-color: #3498db; color: #fff; padding: 15px; text-decoration: none; text-align: center; border-radius: 5px; width: 70%;">Apply Now</a>
+    </li>
+
+    <!-- Job Listing 2 -->
+    <li data-job-type="part-time" data-company="Microsoft" data-location="Bangalore" style="border: 1px solid #555; width: 25%; border-radius: 10px; padding: 20px; margin-bottom: 20px; background-color: #444;">
+        <h3 style="margin-bottom: 10px; color: #3498db; text-align: center;">Marketing Intern</h3>
+        <p style="margin-bottom: 10px;"><strong>Company:</strong> Microsoft</p>
+        <p style="margin-bottom: 10px;"><strong>Location:</strong> Bangalore</p>
+        <p style="margin-bottom: 10px;"><strong>Job Type:</strong> Part Time</p>
+        <p style="margin-bottom: 10px;"><strong>Description:</strong> Join our marketing team as an intern and gain valuable experience...</p>
+        <a href="link_to_apply" style="display: inline-block; background-color: #3498db; color: #fff; padding: 15px; text-decoration: none; text-align: center; border-radius: 5px; width: 70%;">Apply Now</a>
+    </li>
+
+    <!-- Job Listing 3 -->
+    <li data-job-type="internship" data-company="Apple" data-location="Noida" style="border: 1px solid #555; width: 25%; border-radius: 10px; padding: 20px; margin-bottom: 20px; background-color: #444;">
+        <h3 style="margin-bottom: 10px; color: #3498db; text-align: center;">Design Intern</h3>
+        <p style="margin-bottom: 10px;"><strong>Company:</strong> Apple</p>
+        <p style="margin-bottom: 10px;"><strong>Location:</strong> Noida</p>
+        <p style="margin-bottom: 10px;"><strong>Job Type:</strong> Internship</p>
+        <p style="margin-bottom: 10px;"><strong>Description:</strong> Exciting opportunity for a design intern to work on innovative projects...</p>
+        <a href="link_to_apply" style="display: inline-block; background-color: #3498db; color: #fff; padding: 15px; text-decoration: none; text-align: center; border-radius: 5px; width: 70%;">Apply Now</a>
+    </li>
+
+    <!-- Add more job listings as needed -->
+</ul>
+
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
